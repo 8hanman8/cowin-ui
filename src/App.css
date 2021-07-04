@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom styles */
+body{
+  font-family: Roboto, sans-serif;
+}
+.hidden {
+  display: none;
+}

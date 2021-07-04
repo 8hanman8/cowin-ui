@@ -1,0 +1,37 @@
+.header {
+    background-color: #001f60;
+    margin: -8px -8px;
+    height: 60px;
+    color: white;
+    display: flex;
+    align-items: center;
+    font: 14px Roboto, sans-serif;
+  }
+  .logo {
+    float: left;
+    height: 20px;
+  }
+  .header > .flex-item1 {
+    margin-left: 20px;
+    width: 30%;
+    padding-top: 5px;
+  }
+  .header > .flex-item1 > span {
+    margin-left: 10px;
+  }
+  .header > .flex-item2 {
+    width: 70%;
+  }
+  .header > .flex-item2 > ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    font: 16px Roboto, sans-serif;
+  }
+  .icon {
+    margin-right: 5px;
+    vertical-align: text-top;
+  }
+  li{
+      cursor: pointer;
+  }
