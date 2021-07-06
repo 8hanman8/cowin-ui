@@ -14,13 +14,14 @@
   .header > .flex-item1 {
     margin-left: 20px;
     width: 30%;
-    padding-top: 5px;
+    padding-top: 10px;
   }
   .header > .flex-item1 > span {
     margin-left: 10px;
   }
   .header > .flex-item2 {
     width: 70%;
+    padding-top: 10px;
   }
   .header > .flex-item2 > ul {
     list-style: none;
