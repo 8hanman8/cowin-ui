@@ -6,11 +6,11 @@ import Header2 from "../login/header2";
 export class Login extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <Header2 />
-        <Banner />
-      </div>
+        <div>
+          <Header />
+          <Header2 />
+          <Banner />
+        </div>
     );
   }
 }

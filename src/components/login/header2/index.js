@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 import Covid19logo from '../../../assets/icons/covid19logo.jpg'
 import './index.css'
 
@@ -14,7 +15,9 @@ class Header2 extends Component {
           />
         </div>
         <div className="flex-item2">
-          <button id="regSignBtn">Register/ Sign in yourself</button>
+            <Link to='/register' className="direct-link">
+                <button id="regSignBtn">Register/ Sign in yourself</button>
+            </Link>
         </div>
       </div>
     );

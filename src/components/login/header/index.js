@@ -33,7 +33,7 @@ class Header extends Component {
               Open APIs
             </li>
             <li>
-              <FcDepartment className="icon" />
+              <FcDepartment className="icon"/>
               Department Login
             </li>
             <li>
