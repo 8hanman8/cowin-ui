@@ -55,7 +55,7 @@ const styles = {
     marginLeft: "220px"
   },
   rightblock: {
-      marginRight: "210px",
+      marginRight: "200px",
       display: "flex",
       alignItems: "center"
   }
