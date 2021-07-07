@@ -16,7 +16,7 @@ const styles = {
   header: {
     width: "100%",
     height: "70px",
-    boxShadow: "0px 2px #d7d7d7",
+    boxShadow: "1px 2px 1px 0 #ccc",
   },
 };
 
