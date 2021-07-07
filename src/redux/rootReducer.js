@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
 import postsReducer from "./posts/reducer";
-const rootReducer = combineReducers({ posts: postsReducer });
+import otpReducer from "./otp/otp-reducer";
+const rootReducer = combineReducers({ posts: postsReducer, otp: otpReducer });
 export default rootReducer;

@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import { PureComponent } from "react";
+import { connect } from "react-redux";
 import "./index.css";
 import HealthyHeart from "./../../../assets/icons/healthy-heart.svg";
+import { getOTP } from "../../../redux/otp/otp-actions";
 
-class RegistrationForm extends Component {
+class RegistrationForm extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -13,7 +15,8 @@ class RegistrationForm extends Component {
     this.setState({ mobileNumber: event.target.value });
   };
   submitMobileNumber = () => {
-    console.log(this.state);
+    const { findOTP } = this.props;
+    findOTP(this.state.mobileNumber);
   };
   render() {
     return (
@@ -49,6 +52,26 @@ class RegistrationForm extends Component {
       </div>
     );
   }
+  componentDidUpdate() {
+    const { isFetching, txnId, error } = this.props.otp;
+    if (!isFetching && !error && !!txnId) {
+      alert("Redirect to OTP enter");
+    }
+  }
 }
 
-export default RegistrationForm;
+const mapStateToProps = (state) => {
+  return {
+    otp: state.otp,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    findOTP: (mobileNumber) => {
+      dispatch(getOTP(mobileNumber));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
