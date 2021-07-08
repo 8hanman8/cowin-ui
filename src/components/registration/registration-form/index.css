@@ -1,6 +1,6 @@
 .main-container {
   width: 420px;
-  height: 370px;
+  height: 425px;
   background-color: #ffffff;
   margin: 70px auto;
   box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
@@ -71,3 +71,22 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.otp-received-note-container {
+  color: #001f60;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0 86px;
+}
+.otp-received-note-container .resend-otp-btn {
+ background-color: transparent;
+ color: #001f60;
+ font-weight: 700;
+ font-size: 15px;
+}
+
+.otp-received-note-container .note {
+  color: #9f9f9f;
+  font-weight: 400;
+  font-size: 13px;
+ }
+
