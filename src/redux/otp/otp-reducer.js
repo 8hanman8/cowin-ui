@@ -52,7 +52,7 @@ const otpReducer = (state = defaultState, action) => {
       return {
         ...state,
         isFetching: false,
-        accessToken: action.accessToken,
+        accessToken: '',
         error: action.error,
       };
     default:

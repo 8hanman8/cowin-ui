@@ -1,9 +1,10 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import "./index.css";
 import HealthyHeart from "./../../../assets/icons/healthy-heart.svg";
 import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
+import { toast } from "react-toastify";
 
 class RegistrationForm extends PureComponent {
   constructor() {
@@ -12,6 +13,8 @@ class RegistrationForm extends PureComponent {
       mobileNumber: null,
       isOTPSent: false,
       otp: null,
+      isMobileNumberNotValid: false,
+      isOTPNotValid: false,
     };
   }
   handleMobileNumber = (event) => {
@@ -19,15 +22,26 @@ class RegistrationForm extends PureComponent {
   };
   submitMobileNumber = () => {
     const { findOTP } = this.props;
+    if (!this.state.mobileNumber || this.state.mobileNumber.length !== 10) {
+      this.setState({ isMobileNumberNotValid: true });
+      return;
+    }
     findOTP(this.state.mobileNumber);
   };
   handleOTP = (event) => {
     const otp = event.target.value;
-    this.setState({ otp: otp ? sha256(otp) : otp });
+    this.setState({ otp: otp });
   };
   verifyOTP = () => {
     const { verifyOTP } = this.props;
-    const payload = { txnId: this.props.otp.txnId, otp: this.state.otp };
+    if (!this.state.otp || this.state.otp.length !== 6) {
+      this.setState({ isOTPNotValid: true });
+      return;
+    }
+    const payload = {
+      txnId: this.props.otp.txnId,
+      otp: sha256(this.state.otp),
+    };
     verifyOTP(payload);
   };
   render() {
@@ -46,31 +60,15 @@ class RegistrationForm extends PureComponent {
         <div className="note-container">
           <span>
             {this.state.isOTPSent
-              ? `An OTP has been sent to ${this.state.mobileNumber}`
+              ? `An OTP has been sent to ${this.maskMobileNumber()}`
               : "An OTP will be sent to your mobile number for verification"}
           </span>
         </div>
         <div className="form-container">
           <div>
-            {!this.state.isOTPSent ? (
-              <input
-                className="mobile-input"
-                type="number"
-                minLength="10"
-                maxLength="10"
-                placeholder="Enter your mobile number"
-                onChange={this.handleMobileNumber}
-              ></input>
-            ) : (
-              <input
-                className="mobile-input"
-                type="number"
-                minLength="6"
-                maxLength="6"
-                placeholder="Enter OTP"
-                onChange={this.handleOTP}
-              ></input>
-            )}
+            {!this.state.isOTPSent
+              ? this.renderMobileNumberInput()
+              : this.renderOTPInput()}
           </div>
           {this.state.isOTPSent ? (
             <div className="otp-received-note-container">
@@ -105,11 +103,55 @@ class RegistrationForm extends PureComponent {
     }
     if (error) {
       console.error(error);
+      toast.error("Something went wrong, please try again later", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }
-    if(accessToken){
-      
+    if (accessToken) {
+      toast?.success("OTP successfully verified", {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
     }
   }
+  renderMobileNumberInput = () => {
+    return (
+      <input
+        className={`mobile-input ${
+          this.state.isMobileNumberNotValid ? "error" : ""
+        }`}
+        type="number"
+        minLength="10"
+        maxLength="10"
+        placeholder="Enter your mobile number"
+        onChange={this.handleMobileNumber}
+      ></input>
+    );
+  };
+  renderOTPInput = () => {
+    return (
+      <input
+        className={`mobile-input ${this.state.isOTPNotValid ? "error" : ""}`}
+        type="number"
+        minLength="6"
+        maxLength="6"
+        placeholder="Enter OTP"
+        onChange={this.handleOTP}
+      ></input>
+    );
+  };
+  maskMobileNumber = () => {
+    const masked = this.state.mobileNumber
+      .toString()
+      .split("")
+      .map((e, i) => (i <= 5 ? "X" : e));
+    return (
+      masked.slice(0, 3).join("") +
+      " " +
+      masked.slice(3, 6).join("") +
+      " " +
+      masked.slice(6).join("")
+    );
+  };
 }
 
 const mapStateToProps = (state) => {
