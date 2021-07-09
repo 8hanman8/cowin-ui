@@ -5,6 +5,7 @@ import HealthyHeart from "./../../../assets/icons/healthy-heart.svg";
 import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
 import { toast } from "react-toastify";
+import { Redirect } from "react-router-dom";
 
 class RegistrationForm extends PureComponent {
   constructor() {
@@ -15,18 +16,19 @@ class RegistrationForm extends PureComponent {
       otp: null,
       isMobileNumberNotValid: false,
       isOTPNotValid: false,
+      enableResendOtpButton: false,
     };
   }
   handleMobileNumber = (event) => {
     this.setState({ mobileNumber: event.target.value });
   };
   submitMobileNumber = () => {
-    const { findOTP } = this.props;
+    const { getOTP } = this.props;
     if (!this.state.mobileNumber || this.state.mobileNumber.length !== 10) {
       this.setState({ isMobileNumberNotValid: true });
       return;
     }
-    findOTP(this.state.mobileNumber);
+    getOTP(this.state.mobileNumber);
   };
   handleOTP = (event) => {
     const otp = event.target.value;
@@ -44,7 +46,14 @@ class RegistrationForm extends PureComponent {
     };
     verifyOTP(payload);
   };
+  resendOTP = () => {
+    const { getOTP } = this.props;
+    getOTP(this.state.mobileNumber);
+  };
   render() {
+    if (this.props.otp.accessToken) {
+      return <Redirect to={{ pathname: "/dashboard" }} />;
+    }
     return (
       <div className="main-container">
         <div className="banner-container">
@@ -72,8 +81,14 @@ class RegistrationForm extends PureComponent {
           </div>
           {this.state.isOTPSent ? (
             <div className="otp-received-note-container">
-              <div className="resend-otp">
-                <button className="resend-otp-btn">Resend OTP</button>
+              <div
+                className={`resend-otp ${
+                  !this.state.enableResendOtpButton ? "hidden" : ""
+                }`}
+              >
+                <button className="resend-otp-btn" onClick={this.resendOTP}>
+                  Resend OTP
+                </button>
               </div>
               <div className="note">
                 There might be some deley in receiving the OTP due to heavy
@@ -107,10 +122,11 @@ class RegistrationForm extends PureComponent {
         position: toast.POSITION.BOTTOM_LEFT,
       });
     }
-    if (accessToken) {
-      toast?.success("OTP successfully verified", {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
+    if (this.state.isOTPSent) {
+      const timeout = setTimeout(() => {
+        this.setState({ enableResendOtpButton: true });
+        clearInterval(timeout);
+      }, 60 * 1000);
     }
   }
   renderMobileNumberInput = () => {
@@ -162,7 +178,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    findOTP: (mobileNumber) => {
+    getOTP: (mobileNumber) => {
       dispatch(getOTP(mobileNumber));
     },
     verifyOTP: (payload) => {

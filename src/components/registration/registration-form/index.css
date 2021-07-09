@@ -71,6 +71,15 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
 .otp-received-note-container {
   color: #001f60;
   font-size: 22px;
@@ -88,10 +97,14 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #9f9f9f;
   font-weight: 400;
   font-size: 13px;
+  margin-top: 5px;
 }
 .error {
   border: 2px solid red;
 }
 .error:focus {
   outline: none;
+}
+.hidden {
+  display: none;
 }
