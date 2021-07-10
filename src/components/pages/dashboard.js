@@ -3,6 +3,7 @@ import Footer from "../registration/footer";
 import Header from "../registration/header";
 import Header2 from "../registration/header2";
 import MyBeneficiaries from "../dashboard/my-beneficiaries";
+import SessionIdleTimer from '../common/idle-timer'
 
 class Dashboard extends PureComponent {
   render() {
@@ -20,9 +21,10 @@ class Dashboard extends PureComponent {
             overflow: "scroll",
           }}
         >
-          <MyBeneficiaries />
+          {/* <MyBeneficiaries /> */}
         </div>
         <Footer />
+        <SessionIdleTimer/>
       </React.Fragment>
     );
   }
