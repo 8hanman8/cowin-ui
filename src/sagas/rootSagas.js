@@ -2,6 +2,7 @@ import { all } from "redux-saga/effects";
 import postsSagas from "../sagas/posts";
 import isFunction from "lodash/fp/isFunction";
 import otpSagas from "../sagas/otp-saga";
+import beneficiariesSagas from "../sagas/beneficiaries-saga";
 
 export const runSagas = (sagas) => {
   if (Array.isArray(sagas)) {
@@ -15,5 +16,9 @@ export const runSagas = (sagas) => {
 };
 
 export default function* rootSaga() {
-  yield all([...runSagas(otpSagas), ...runSagas(postsSagas)]);
+  yield all([
+    ...runSagas(otpSagas),
+    ...runSagas(postsSagas),
+    ...runSagas(beneficiariesSagas),
+  ]);
 }

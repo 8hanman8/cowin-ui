@@ -2,12 +2,13 @@ import React, { PureComponent } from "react";
 import Footer from "../registration/footer";
 import Header from "../registration/header";
 import Header2 from "../registration/header2";
+import MyBeneficiaries from "../dashboard/my-beneficiaries";
 
 class Dashboard extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <Header showLogoutIcon/>
+        <Header showLogoutIcon />
         <Header2 />
         <div
           style={{
@@ -19,7 +20,7 @@ class Dashboard extends PureComponent {
             overflow: "scroll",
           }}
         >
-          This is Dashboard page
+          <MyBeneficiaries />
         </div>
         <Footer />
       </React.Fragment>

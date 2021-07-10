@@ -7,6 +7,8 @@ const interceptors = {
       (config) => {
         // Do something before request is sent
         console.log("Request is sending");
+        const accessToken = store.getState().otp.accessToken;
+        config.headers.Authorization = `Bearer ${accessToken}`;
         return config;
       },
       (error) => {
@@ -25,7 +27,7 @@ const interceptors = {
         console.log("Response received with an error");
         if (error.response && error.response.status === 401) {
           // store.dispatch({ type: "LOGOUT_USER" });
-          store.dispatch(logout())
+          store.dispatch(logout());
         }
         return Promise.reject(error);
       }
