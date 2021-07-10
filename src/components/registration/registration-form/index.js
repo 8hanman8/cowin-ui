@@ -6,6 +6,7 @@ import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
 import { toast } from "react-toastify";
 import { Redirect } from "react-router-dom";
+import Spinner from "../../common/spinner";
 
 class RegistrationForm extends PureComponent {
   constructor() {
@@ -108,12 +109,13 @@ class RegistrationForm extends PureComponent {
         </div>
         <div className="using-container"></div>
         <div className="apps-container"></div>
+        <Spinner loading={this.props.otp.loading} />
       </div>
     );
   }
   componentDidUpdate() {
-    const { isFetching, txnId, error, accessToken } = this.props.otp;
-    if (!isFetching && !error && !!txnId) {
+    const { loading, txnId, error } = this.props.otp;
+    if (!loading && !error && !!txnId) {
       this.setState({ isOTPSent: true });
     }
     if (error) {

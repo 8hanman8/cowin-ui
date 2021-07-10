@@ -8,52 +8,56 @@ import {
 } from "../otp/otp-types";
 
 const defaultState = {
-  isFetching: false,
+  loading: false,
   txnId: "",
   error: "",
   accessToken: "",
+  isLoggedIn: false,
 };
 const otpReducer = (state = defaultState, action) => {
   switch (action.type) {
     case OTP_REQUEST:
       return {
         ...state,
-        isFetching: true,
+        loading: true,
         txnId: "",
         error: "",
       };
     case OTP_REQUEST_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        loading: false,
         txnId: action.txnId,
         error: "",
       };
     case OTP_REQUEST_FAILURE:
       return {
         ...state,
-        isFetching: true,
+        loading: true,
         txnId: "",
         error: action.error,
       };
     case OTP_VERIFY_REQUEST:
       return {
         ...state,
-        isFetching: true,
+        loading: true,
+        isLoggedIn: false,
       };
     case OTP_VERIFY_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        loading: false,
         accessToken: action.accessToken,
         error: "",
+        isLoggedIn: true,
       };
     case OTP_VERIFY_FAILURE:
       return {
         ...state,
-        isFetching: false,
-        accessToken: '',
+        loading: false,
+        accessToken: "",
         error: action.error,
+        isLoggedIn: false,
       };
     default:
       return state;
