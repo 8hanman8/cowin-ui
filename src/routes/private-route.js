@@ -6,12 +6,12 @@ class PrivateRoute extends PureComponent {
   render() {
     const { isLoggedIn, path, component: Component, ...rest } = this.props;
     if (isLoggedIn) {
-      if (path === "/") {
+      if (path === "/" || path === "/register") {
         return <Redirect to="/dashboard" />;
       }
       return <Component {...rest} />;
     } else {
-      if (path === "/") {
+      if (path === "/" || path === "/register") {
         return <Component {...rest} />;
       } else {
         return <Redirect to="/register" />;

@@ -5,6 +5,9 @@ import {
   OTP_VERIFY_REQUEST,
   OTP_VERIFY_SUCCESS,
   OTP_VERIFY_FAILURE,
+  LOGOUT_USER,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILURE,
 } from "./otp-types";
 
 function getOTP(mobileNumber) {
@@ -49,6 +52,25 @@ function verifyOTPFailure(error) {
   };
 }
 
+function logout() {
+  return {
+    type: LOGOUT_USER,
+  };
+}
+
+function logoutSuccess() {
+  return {
+    type: LOGOUT_USER_SUCCESS,
+  };
+}
+
+function logoutFailure(error) {
+  return {
+    type: LOGOUT_USER_FAILURE,
+    error: error,
+  };
+}
+
 export {
   getOTP,
   getOTPSuccess,
@@ -56,4 +78,7 @@ export {
   verifyOTP,
   verifyOTPSuccess,
   verifyOTPFailure,
+  logout,
+  logoutSuccess,
+  logoutFailure,
 };

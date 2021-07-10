@@ -5,14 +5,22 @@ import {
   OTP_VERIFY_REQUEST,
   OTP_VERIFY_SUCCESS,
   OTP_VERIFY_FAILURE,
+  LOGOUT_USER,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILURE,
 } from "../otp/otp-types";
+
+const sessionAccessToken = sessionStorage.getItem("accessToken");
+const accessToken = sessionAccessToken !== "null" ? sessionAccessToken : null;
+const isLoggedIn = !!accessToken;
 
 const defaultState = {
   loading: false,
   txnId: "",
   error: "",
-  accessToken: "",
-  isLoggedIn: false,
+  isOTPSent: false,
+  accessToken: accessToken,
+  isLoggedIn: isLoggedIn,
 };
 const otpReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -29,6 +37,7 @@ const otpReducer = (state = defaultState, action) => {
         loading: false,
         txnId: action.txnId,
         error: "",
+        isOTPSent: true,
       };
     case OTP_REQUEST_FAILURE:
       return {
@@ -55,9 +64,30 @@ const otpReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        accessToken: "",
+        accessToken: null,
         error: action.error,
         isLoggedIn: false,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOGOUT_USER_SUCCESS:
+      return {
+        ...state,
+        accessToken: null,
+        isLoggedIn: false,
+        error: "",
+        loading: false,
+        txnId: "",
+        isOTPSent : false
+      };
+    case LOGOUT_USER_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
       };
     default:
       return state;

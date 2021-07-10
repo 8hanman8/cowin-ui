@@ -5,7 +5,6 @@ import HealthyHeart from "./../../../assets/icons/healthy-heart.svg";
 import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
 import { toast } from "react-toastify";
-import { Redirect } from "react-router-dom";
 import Spinner from "../../common/spinner";
 
 class RegistrationForm extends PureComponent {
@@ -13,7 +12,6 @@ class RegistrationForm extends PureComponent {
     super();
     this.state = {
       mobileNumber: null,
-      isOTPSent: false,
       otp: null,
       isMobileNumberNotValid: false,
       isOTPNotValid: false,
@@ -52,9 +50,6 @@ class RegistrationForm extends PureComponent {
     getOTP(this.state.mobileNumber);
   };
   render() {
-    if (this.props.otp.accessToken) {
-      return <Redirect to={{ pathname: "/dashboard" }} />;
-    }
     return (
       <div className="main-container">
         <div className="banner-container">
@@ -62,25 +57,25 @@ class RegistrationForm extends PureComponent {
         </div>
         <div className="title-container">
           <span>
-            {this.state.isOTPSent
+            {this.props.otp.isOTPSent
               ? "Verify OTP"
               : "Register Or SignIn for Vaccination"}
           </span>
         </div>
         <div className="note-container">
           <span>
-            {this.state.isOTPSent
+            {this.props.otp.isOTPSent
               ? `An OTP has been sent to ${this.maskMobileNumber()}`
               : "An OTP will be sent to your mobile number for verification"}
           </span>
         </div>
         <div className="form-container">
           <div>
-            {!this.state.isOTPSent
+            {!this.props.otp.isOTPSent
               ? this.renderMobileNumberInput()
               : this.renderOTPInput()}
           </div>
-          {this.state.isOTPSent ? (
+          {this.props.otp.isOTPSent ? (
             <div className="otp-received-note-container">
               <div
                 className={`resend-otp ${
@@ -100,7 +95,7 @@ class RegistrationForm extends PureComponent {
             ""
           )}
           <div>
-            {!this.state.isOTPSent ? (
+            {!this.props.otp.isOTPSent ? (
               <button onClick={this.submitMobileNumber}>Get OTP</button>
             ) : (
               <button onClick={this.verifyOTP}>Verify & Proceed</button>
@@ -114,17 +109,18 @@ class RegistrationForm extends PureComponent {
     );
   }
   componentDidUpdate() {
-    const { loading, txnId, error } = this.props.otp;
-    if (!loading && !error && !!txnId) {
-      this.setState({ isOTPSent: true });
-    }
+    const { error } = this.props.otp;
+
     if (error) {
       console.error(error);
-      toast.error("Something went wrong, please try again later", {
-        position: toast.POSITION.BOTTOM_LEFT,
-      });
+      toast.error(
+        error ? error : "Something went wrong, please try again later",
+        {
+          position: toast.POSITION.BOTTOM_LEFT,
+        }
+      );
     }
-    if (this.state.isOTPSent) {
+    if (this.props.otp.isOTPSent) {
       const timeout = setTimeout(() => {
         this.setState({ enableResendOtpButton: true });
         clearInterval(timeout);

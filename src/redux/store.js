@@ -8,5 +8,9 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sageMiddleware))
 );
+
+store.subscribe(() => {
+  sessionStorage.setItem("accessToken", store.getState().otp.accessToken);
+});
 sageMiddleware.run(rootSaga);
 export default store;

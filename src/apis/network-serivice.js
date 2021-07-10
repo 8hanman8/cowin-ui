@@ -1,4 +1,5 @@
 import axios from "axios";
+import { logout } from "../redux/otp/otp-actions";
 
 const interceptors = {
   setupInterceptors: (store) => {
@@ -22,10 +23,11 @@ const interceptors = {
       },
       (error) => {
         console.log("Response received with an error");
-        if (error.response.status === 401) {
-          store.dispatch({ type: "LOGOUT_USER" });
+        if (error.response && error.response.status === 401) {
+          // store.dispatch({ type: "LOGOUT_USER" });
+          store.dispatch(logout())
         }
-        return Promise.reject(error.response);
+        return Promise.reject(error);
       }
     );
   },

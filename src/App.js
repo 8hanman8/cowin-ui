@@ -5,9 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import RouterOutlet from "./routes/route";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import NetworkService from './apis/network-serivice'
+import NetworkService from "./apis/network-serivice";
 toast.configure();
-NetworkService.setupInterceptors(store)
+NetworkService.setupInterceptors(store);
 
 function App() {
   return (

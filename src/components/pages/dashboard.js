@@ -7,7 +7,7 @@ class Dashboard extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <Header />
+        <Header showLogoutIcon/>
         <Header2 />
         <div
           style={{

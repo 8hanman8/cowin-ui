@@ -11,8 +11,8 @@ class RouterOutlet extends Component {
     return (
       <Switch>
         <Route exact strict path="/" component={Login} />
-        <Route exact strict path="/register" component={Registration} />
-        {/* <Route exact strict path="/dashboard" component={Dashboard} /> */}
+        {/* <Route exact strict path="/register" component={Registration} /> */}
+        <PrivateRoute exact strict path="/register" component={Registration} />
         <PrivateRoute exact strict path="/dashboard" component={Dashboard} />
         <Route component={NotFound} />
       </Switch>
