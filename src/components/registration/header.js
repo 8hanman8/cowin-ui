@@ -21,7 +21,12 @@ class Header extends Component {
         </div>
         <div style={styles.flexItem2}>
           {this.props.showLogoutIcon ? (
-            <RiLogoutBoxLine style={styles.logoutIcon} onClick={this.logout} />
+            <div style={styles.logoutIcon} onClick={this.logout}>
+              <RiLogoutBoxLine
+                style={{ verticalAlign: "text-bottom", marginRight: "3px" }}
+              />
+              <span>Logout</span>
+            </div>
           ) : (
             ""
           )}

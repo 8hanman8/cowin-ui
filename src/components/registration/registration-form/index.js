@@ -6,13 +6,14 @@ import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
 import { toast } from "react-toastify";
 import Spinner from "../../common/spinner";
+import validator from "validator";
 
 class RegistrationForm extends PureComponent {
   constructor() {
     super();
     this.state = {
-      mobileNumber: null,
-      otp: null,
+      mobileNumber: '',
+      otp: 'null',
       isMobileNumberNotValid: false,
       isOTPNotValid: false,
       enableResendOtpButton: false,
@@ -23,7 +24,7 @@ class RegistrationForm extends PureComponent {
   };
   submitMobileNumber = () => {
     const { getOTP } = this.props;
-    if (!this.state.mobileNumber || this.state.mobileNumber.length !== 10) {
+    if (!validator.isMobilePhone(this.state.mobileNumber, "en-IN")) {
       this.setState({ isMobileNumberNotValid: true });
       return;
     }
@@ -138,22 +139,27 @@ class RegistrationForm extends PureComponent {
         maxLength="10"
         placeholder="Enter your mobile number"
         onChange={this.handleMobileNumber}
+        value={this.state.mobileNumber}
       ></input>
     );
   };
   renderOTPInput = () => {
     return (
       <input
-        className={`mobile-input ${this.state.isOTPNotValid ? "error" : ""}`}
+        className={`otp-input ${this.state.isOTPNotValid ? "error" : ""}`}
         type="number"
         minLength="6"
         maxLength="6"
         placeholder="Enter OTP"
         onChange={this.handleOTP}
+        value={this.state.otp}
       ></input>
     );
   };
   maskMobileNumber = () => {
+    if (!this.state.mobileNumber) {
+      return "";
+    }
     const masked = this.state.mobileNumber
       .toString()
       .split("")

@@ -60,7 +60,7 @@
   margin-top: 15px;
   cursor: pointer;
 }
-.mobile-input {
+.mobile-input, .otp-input {
   width: 75%;
   border-radius: 5px;
   padding: 10px 10px;
