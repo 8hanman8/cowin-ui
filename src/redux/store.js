@@ -10,7 +10,11 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  sessionStorage.setItem("accessToken", store.getState().otp.accessToken);
+  if (store.getState().otp.accessToken) {
+    sessionStorage.setItem("accessToken", store.getState().otp.accessToken);
+  } else {
+    sessionStorage.removeItem("accessToken");
+  }
 });
 sageMiddleware.run(rootSaga);
 export default store;

@@ -21,7 +21,7 @@ class Dashboard extends PureComponent {
             overflow: "scroll",
           }}
         >
-          {/* <MyBeneficiaries /> */}
+          <MyBeneficiaries />
         </div>
         <Footer />
         <SessionIdleTimer/>
