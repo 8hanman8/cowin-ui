@@ -84,9 +84,16 @@ class RegistrationForm extends PureComponent {
                   !this.state.enableResendOtpButton ? "hidden" : ""
                 }`}
               >
-                <button className="resend-otp-btn" onClick={this.resendOTP}>
+                {/* <button className="resend-otp-btn" onClick={this.resendOTP}>
                   Resend OTP
-                </button>
+                </button> */}
+                <Button
+                  onClick={this.resendOTP}
+                  type="text"
+                  style={{ width: "80%", marginTop: "15px" }}
+                >
+                  Resend OTP
+                </Button>
               </div>
               <div className="note">
                 There might be some deley in receiving the OTP due to heavy

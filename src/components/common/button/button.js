@@ -18,7 +18,7 @@ class Button extends Component {
     const {
       children,
       onClick,
-      btnColor = "teal",
+      btnColor = "#001F60",
       labelColor,
       disabled,
       type,
@@ -55,6 +55,10 @@ class Button extends Component {
       width: "95%",
       margin: "0 auto",
     };
+    const textStyles = {
+      background: "none",
+      color: btnColor,
+    };
     let btnStyle;
     switch (type) {
       case "rounded":
@@ -69,6 +73,9 @@ class Button extends Component {
         } else {
           btnStyle = outlineStyles;
         }
+        break;
+      case "text":
+        btnStyle = textStyles;
         break;
       default:
         btnStyle = {

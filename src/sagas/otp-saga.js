@@ -42,7 +42,7 @@ export function* verifyOTPSaga(action) {
     // };
     // yield put(verifyOTPSuccess(response.token));
   } catch (error) {
-    yield put(verifyOTPFailure(error));
+    yield put(verifyOTPFailure(error.response.data.error));
   }
 }
 
