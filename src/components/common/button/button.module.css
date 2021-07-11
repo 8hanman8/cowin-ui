@@ -1,0 +1,21 @@
+.btn {
+    font-family: 'Ubuntu', sans-serif;
+    position: relative;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1;
+    height: 40px;
+    transition: all 200ms linear;
+    border-radius: 4px;
+    width: 240px;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    text-transform: capitalize;
+}

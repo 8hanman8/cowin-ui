@@ -3,9 +3,14 @@ import Footer from "../registration/footer";
 import Header from "../registration/header";
 import Header2 from "../registration/header2";
 import MyBeneficiaries from "../dashboard/my-beneficiaries";
-import SessionIdleTimer from '../common/idle-timer'
+import SessionIdleTimer from "../common/idle-timer";
 
 class Dashboard extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.sessionTimoutModal = React.createRef();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -24,7 +29,7 @@ class Dashboard extends PureComponent {
           <MyBeneficiaries />
         </div>
         <Footer />
-        <SessionIdleTimer/>
+        <SessionIdleTimer />
       </React.Fragment>
     );
   }

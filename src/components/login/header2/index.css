@@ -10,13 +10,3 @@
     margin-right: 60px;
     padding-top: 10px;
   }
-  #regSignBtn {
-    border: none;
-    background-color: #ffc002;
-    border-radius: 5px;
-    padding: 10px 35px;
-    font-weight: 700;
-    color: #001f60;
-    font: Roboto, sans-serif;
-    cursor: pointer;
-  }
