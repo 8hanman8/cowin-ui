@@ -6,6 +6,7 @@ import RouterOutlet from "./routes/route";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NetworkService from "./apis/network-serivice";
+import Spinner from "./components/common/spinner/index";
 toast.configure();
 NetworkService.setupInterceptors(store);
 
@@ -14,6 +15,7 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <RouterOutlet />
+        <Spinner />
       </Provider>
     </BrowserRouter>
   );

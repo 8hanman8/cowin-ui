@@ -5,7 +5,6 @@ import HealthyHeart from "./../../../assets/icons/healthy-heart.svg";
 import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
 import { toast } from "react-toastify";
-import Spinner from "../../common/spinner";
 import validator from "validator";
 import Button from "../../common/button/button";
 
@@ -132,7 +131,7 @@ class RegistrationForm extends PureComponent {
           style={{ width: "50%", marginTop: "20px" }}
         ></div>
         <div className="apps-container"></div>
-        <Spinner loading={this.props.otp.loading} />
+        {/* <Spinner loading={this.props.otp.loading} /> */}
       </div>
     );
   }
