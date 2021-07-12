@@ -4,6 +4,7 @@ import IdleTimer from "react-idle-timer";
 import { logout } from "../../redux/otp/otp-actions";
 import PopupModal from "../common/popup-modal.js";
 import Button from "../common/button/button";
+import moment from "moment";
 
 class SessionIdleTimer extends Component {
   constructor() {
@@ -16,39 +17,42 @@ class SessionIdleTimer extends Component {
   }
   onAction = (event) => {
     console.log(
-      `user is active and the time remaining is ${(
-        this.idleTimerRef.current.getRemainingTime() /
-        (1000 * 60)
-      ).toFixed(2)} minutes`
+      `user is active and the time remaining is ${moment
+        .duration(this.idleTimerRef.current.getRemainingTime())
+        .minutes()} minutes`
     );
   };
   onIdle = (event) => {
     console.log(
       "user is idle and last active at",
-      new Date(this.idleTimerRef.current.getLastActiveTime())
+      moment(this.idleTimerRef.current.getLastActiveTime()).format(
+        process.env.REACT_APP_DATE_FORMAT
+      )
     );
     this.setState({ showPopup: "true" });
-    this.sessioTimedoutRef.current = setInterval(() => {
+    this.sessioTimedoutRef.current = setTimeout(() => {
       const { logout } = this.props;
       logout();
-    }, 1000 * 60 * 3);
+    }, parseInt(process.env.REACT_APP_SESSION_TIMEOUT_WARNING_IN_SECONDS) * 1000);
   };
   logoutMe = () => {
     const { logout } = this.props;
-    clearInterval(this.sessioTimedoutRef.current);
+    clearTimeout(this.sessioTimedoutRef.current);
     logout();
   };
   extendSession = () => {
     this.setState({ showPopup: "false" });
     console.log("Session extended");
-    clearInterval(this.sessioTimedoutRef.current);
+    clearTimeout(this.sessioTimedoutRef.current);
   };
   render() {
     return (
       <>
         <IdleTimer
           ref={this.idleTimerRef}
-          timeout={1000 * 60 * 15}
+          timeout={
+            parseInt(process.env.REACT_APP_SESSION_TIMEOUT_IN_SECONDS) * 1000
+          }
           onAction={this.onAction}
           onIdle={this.onIdle}
           debounce={250}
@@ -63,8 +67,22 @@ class SessionIdleTimer extends Component {
           body={
             <>
               <p>
-                You are idle for 15 mins and your current session will be
-                expired in 3 mins
+                You are idle for{" "}
+                {moment
+                  .duration(
+                    parseInt(process.env.REACT_APP_SESSION_TIMEOUT_IN_SECONDS) *
+                      1000
+                  )
+                  .minutes()}{" "}
+                minutes and your current session will be expired in{" "}
+                {moment
+                  .duration(
+                    parseInt(
+                      process.env.REACT_APP_SESSION_TIMEOUT_WARNING_IN_SECONDS
+                    ) * 1000
+                  )
+                  .minutes()}{" "}
+                minutes
               </p>
               <p>Would you like to continue the session?</p>
             </>
@@ -82,14 +100,14 @@ class SessionIdleTimer extends Component {
                 btnColor="#DA524E"
                 onClick={this.logoutMe}
               >
-                No
+                Log out
               </Button>
               <Button
-                style={{ width: "20%", height: "30px" }}
+                style={{ width: "35%", height: "30px" }}
                 btnColor="#5CB95C"
                 onClick={this.extendSession}
               >
-                Yes
+                Keep Me Sign In
               </Button>
             </div>
           }
