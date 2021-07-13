@@ -13,7 +13,7 @@ class RegistrationForm extends PureComponent {
     super();
     this.state = {
       mobileNumber: "",
-      otp: "null",
+      otp: "",
       isMobileNumberNotValid: false,
       isOTPNotValid: false,
       enableResendOtpButton: false,
@@ -160,12 +160,13 @@ class RegistrationForm extends PureComponent {
         className={`mobile-input ${
           this.state.isMobileNumberNotValid ? "error" : ""
         }`}
-        type="number"
+        type="text"
         minLength="10"
         maxLength="10"
         placeholder="Enter your mobile number"
         onChange={this.handleMobileNumber}
         value={this.state.mobileNumber}
+        onKeyDown={this.isAllowInput}
       ></input>
     );
   };
@@ -173,14 +174,24 @@ class RegistrationForm extends PureComponent {
     return (
       <input
         className={`otp-input ${this.state.isOTPNotValid ? "error" : ""}`}
-        type="number"
+        type="text"
         minLength="6"
         maxLength="6"
         placeholder="Enter OTP"
         onChange={this.handleOTP}
         value={this.state.otp}
+        onKeyDown={this.isAllowInput}
       ></input>
     );
+  };
+  isAllowInput = (event) => {
+    const allowedKeyCodes = [8, 37, 39, 46];
+    if (
+      !validator.isNumeric(event.key) &&
+      !allowedKeyCodes.includes(event.keyCode)
+    ) {
+      event.preventDefault();
+    }
   };
   maskMobileNumber = () => {
     if (!this.state.mobileNumber) {

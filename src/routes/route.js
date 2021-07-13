@@ -5,13 +5,14 @@ import Registration from "../components/pages/registration";
 import NotFound from "../components/pages/not-found";
 import Dashboard from "../components/pages/dashboard";
 import PrivateRoute from "./private-route";
+import PlayGround from "../components/pages/play-ground";
 
 class RouterOutlet extends Component {
   render() {
     return (
       <Switch>
         <Route exact strict path="/" component={Login} />
-        {/* <Route exact strict path="/register" component={Registration} /> */}
+        <Route exact strict path="/play" component={PlayGround} />
         <PrivateRoute exact strict path="/register" component={Registration} />
         <PrivateRoute exact strict path="/dashboard" component={Dashboard} />
         <Route component={NotFound} />
