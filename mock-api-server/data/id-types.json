@@ -1,0 +1,59 @@
+{
+  "types": [
+    {
+      "type": "Aadhaar Card",
+      "id": 1,
+      "doc_type": null,
+      "flag": 1
+    },
+    {
+      "type": "Driving License",
+      "id": 2,
+      "doc_type": "DRVLC",
+      "flag": 1
+    },
+    {
+      "type": "PAN Card",
+      "id": 6,
+      "doc_type": "PANCR",
+      "flag": 1
+    },
+    {
+      "type": "Passport",
+      "id": 8,
+      "doc_type": "PSPRT",
+      "flag": 1
+    },
+    {
+      "type": "Pension Passbook",
+      "id": 9,
+      "doc_type": null,
+      "flag": 1
+    },
+    {
+      "type": "NPR Smart Card",
+      "id": 11,
+      "doc_type": null,
+      "flag": 1
+    },
+    {
+      "type": "Voter ID",
+      "id": 12,
+      "doc_type": "VTRID",
+      "flag": 1
+    },
+    {
+      "type": "Unique Disability ID (Unique ID for Persons with Disabilities)",
+      "id": 15,
+      "doc_type": null,
+      "flag": 1
+    },
+    {
+      "type": "Ration Card with Photo",
+      "id": 16,
+      "doc_type": null,
+      "flag": 1
+    }
+  ],
+  "ttl": 24
+}

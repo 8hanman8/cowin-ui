@@ -46,9 +46,14 @@ server.use(function (req, res, next) {
 //   req.query = req.body
 //   next()
 // })
+// server.use(jsonServer.rewriter({
+//   "/api/v2/auth/generateMobileOTP": "/generateMobileOTP"
+// }))
 
-server.use("/cowin-api/", router);
+server.use(jsonServer.rewriter(require("./routes.json")));
 
+server.use("/", router);
+// server.use("/api/v2/auth/",router)
 server.listen(3004, function () {
   console.log("JSON Server is running");
 });

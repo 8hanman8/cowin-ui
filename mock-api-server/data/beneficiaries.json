@@ -1,0 +1,49 @@
+{
+  "beneficiaries": [
+    {
+      "beneficiary_reference_id": "32599329458700",
+      "name": "Junjuru Hanmandllu",
+      "birth_year": "1975",
+      "gender": "Male",
+      "mobile_number": "9048",
+      "photo_id_type": "Aadhaar Card",
+      "photo_id_number": "XXXXXXXX6189",
+      "comorbidity_ind": "",
+      "vaccination_status": "Partially Vaccinated",
+      "vaccine": "COVISHIELD",
+      "dose1_date": "10-04-2021",
+      "dose2_date": "",
+      "appointments": []
+    },
+    {
+      "beneficiary_reference_id": "32599695998793",
+      "name": "Reguntta Rachana ",
+      "birth_year": "1972",
+      "gender": "Female",
+      "mobile_number": "9048",
+      "photo_id_type": "Aadhaar Card",
+      "photo_id_number": "XXXXXXXX1027",
+      "comorbidity_ind": "N",
+      "vaccination_status": "Partially Vaccinated",
+      "vaccine": "COVISHIELD",
+      "dose1_date": "27-04-2021",
+      "dose2_date": "",
+      "appointments": []
+    },
+    {
+      "beneficiary_reference_id": "73333323029770",
+      "name": "Gangu Junjuru",
+      "birth_year": "1966",
+      "gender": "Female",
+      "mobile_number": "9048",
+      "photo_id_type": "Aadhaar Card",
+      "photo_id_number": "XXXXXXXX3168",
+      "comorbidity_ind": "N",
+      "vaccination_status": "Not Vaccinated",
+      "vaccine": "COVISHIELD",
+      "dose1_date": "",
+      "dose2_date": "",
+      "appointments": []
+    }
+  ]
+}

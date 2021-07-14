@@ -1,0 +1,6 @@
+{
+  "/api/v2/auth/generateMobileOTP": "/generateMobileOTP",
+  "/api/v2/auth/validateMobileOtp": "/validateMobileOtp",
+  "/api/v2/appointment/beneficiaries": "/beneficiaries",
+  "/api/v2/registration/beneficiary/idTypes": "/idTypes"
+}
