@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import "./index.css";
+import styles from "./index.module.css";
 import HealthyHeart from "./../../../assets/icons/healthy-heart.svg";
 import { getOTP, verifyOTP } from "../../../redux/otp/otp-actions";
 import { sha256 } from "js-sha256";
@@ -53,35 +53,39 @@ class RegistrationForm extends PureComponent {
   };
   render() {
     return (
-      <div className="main-container">
-        <div className="banner-container">
-          <img src={HealthyHeart} alt="logo"></img>
+      <div className={`${styles.mainContainer}`}>
+        <div className={`${styles.bannerContainer}`}>
+          <img
+            src={HealthyHeart}
+            alt="logo"
+            className={`${styles.bannerContainerImg}`}
+          ></img>
         </div>
-        <div className="title-container">
+        <div className={`${styles.titleContainer}`}>
           <span>
             {this.props.otp.isOTPSent
               ? "Verify OTP"
               : "Register Or SignIn for Vaccination"}
           </span>
         </div>
-        <div className="note-container">
+        <div className={`${styles.noteContainer}`}>
           <span>
             {this.props.otp.isOTPSent
               ? `An OTP has been sent to ${this.maskMobileNumber()}`
               : "An OTP will be sent to your mobile number for verification"}
           </span>
         </div>
-        <div className="form-container">
+        <div className={`${styles.formContainer}`}>
           <div>
             {!this.props.otp.isOTPSent
               ? this.renderMobileNumberInput()
               : this.renderOTPInput()}
           </div>
           {this.props.otp.isOTPSent ? (
-            <div className="otp-received-note-container">
+            <div className={`${styles.otpReceivedNoteContainer}`}>
               <div
-                className={`resend-otp ${
-                  !this.state.enableResendOtpButton ? "hidden" : ""
+                className={`${
+                  !this.state.enableResendOtpButton ? `${styles.hidden}` : ""
                 }`}
               >
                 <Button
@@ -92,7 +96,7 @@ class RegistrationForm extends PureComponent {
                   Resend OTP
                 </Button>
               </div>
-              <div className="note">
+              <div className={`${styles.note}`}>
                 There might be some deley in receiving the OTP due to heavy
                 traffic
               </div>

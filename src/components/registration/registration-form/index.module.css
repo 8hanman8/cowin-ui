@@ -1,4 +1,4 @@
-.main-container {
+.mainContainer {
   width: 420px;
   height: 425px;
   background-color: #ffffff;
@@ -11,7 +11,7 @@
   flex-flow: column;
   align-items: center;
 }
-.banner-container {
+.bannerContainer {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -24,11 +24,12 @@
   position: relative;
   top: -45px;
 }
-.banner-container img {
+
+.bannerContainerImg {
   width: 80px;
   text-align: center;
 }
-.title-container {
+.titleContainer {
   color: #001f60;
   font-size: 22px;
   font-weight: 600;
@@ -36,64 +37,35 @@
   margin-top: -25px;
   margin-bottom: 15px;
 }
-.note-container {
+.noteContainer {
   color: #2e2e2e;
   font-size: 15px;
   font-weight: 400;
   padding: 0 52px;
   text-align: center;
 }
-.form-container {
+.formContainer {
   width: 100%;
   text-align: center;
   margin-top: 20px;
 }
-
-.mobile-input,
-.otp-input {
-  width: 75%;
-  border-radius: 5px;
-  padding: 10px 10px;
-  border: 1px solid #002060;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-.otp-received-note-container {
+.otpReceivedNoteContainer {
   color: #001f60;
   font-size: 22px;
   font-weight: 600;
   padding: 0 86px;
 }
-.otp-received-note-container .resend-otp-btn {
+.resendOtpBtn {
   background-color: transparent;
   color: #001f60;
   font-weight: 700;
   font-size: 15px;
 }
-
-.otp-received-note-container .note {
+.note {
   color: #9f9f9f;
   font-weight: 400;
   font-size: 13px;
   margin-top: 5px;
-}
-.error {
-  border: 2px solid red;
-}
-.error:focus {
-  outline: none;
 }
 .hidden {
   display: none;
