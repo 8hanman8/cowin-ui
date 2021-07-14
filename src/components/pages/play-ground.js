@@ -4,12 +4,17 @@ import TextBox from "../common/text-box/text-box";
 class PlayGround extends Component {
   render() {
     return (
-        <TextBox
-          onChange={this.onChangeHandler}
-          label="Name"
-          placeholder =" enter ur"
-          invalid
-        />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+          background: "linear-gradient(-135deg, #c850c0, #4158d0)",
+        }}
+      >
+        <TextBox placeholder="Enter you XXXX" />
+      </div>
     );
   }
   onChangeHandler = (e) => {

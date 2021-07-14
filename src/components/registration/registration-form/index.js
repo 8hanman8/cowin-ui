@@ -7,6 +7,7 @@ import { sha256 } from "js-sha256";
 import { toast } from "react-toastify";
 import validator from "validator";
 import Button from "../../common/button/button";
+import TextBox from "../../common/text-box/text-box";
 
 class RegistrationForm extends PureComponent {
   constructor() {
@@ -83,9 +84,6 @@ class RegistrationForm extends PureComponent {
                   !this.state.enableResendOtpButton ? "hidden" : ""
                 }`}
               >
-                {/* <button className="resend-otp-btn" onClick={this.resendOTP}>
-                  Resend OTP
-                </button> */}
                 <Button
                   onClick={this.resendOTP}
                   type="text"
@@ -104,7 +102,6 @@ class RegistrationForm extends PureComponent {
           )}
           <div>
             {!this.props.otp.isOTPSent ? (
-              // <button onClick={this.submitMobileNumber}>Get OTP</button>
               <Button
                 btnColor="#001F60"
                 onClick={this.submitMobileNumber}
@@ -114,7 +111,6 @@ class RegistrationForm extends PureComponent {
                 Get OTP
               </Button>
             ) : (
-              // <button onClick={this.verifyOTP}>Verify & Proceed</button>
               <Button
                 btnColor="#001F60"
                 onClick={this.verifyOTP}
@@ -131,7 +127,6 @@ class RegistrationForm extends PureComponent {
           style={{ width: "50%", marginTop: "20px" }}
         ></div>
         <div className="apps-container"></div>
-        {/* <Spinner loading={this.props.otp.loading} /> */}
       </div>
     );
   }
@@ -156,33 +151,35 @@ class RegistrationForm extends PureComponent {
   }
   renderMobileNumberInput = () => {
     return (
-      <input
-        className={`mobile-input ${
-          this.state.isMobileNumberNotValid ? "error" : ""
-        }`}
-        type="text"
+      <TextBox
         minLength="10"
         maxLength="10"
         placeholder="Enter your mobile number"
         onChange={this.handleMobileNumber}
+        onBlur={this.handleOnBlurMobileNumber}
         value={this.state.mobileNumber}
-        onKeyDown={this.isAllowInput}
-      ></input>
+        invalid={this.state.isMobileNumberNotValid}
+        number
+      />
     );
   };
   renderOTPInput = () => {
     return (
-      <input
-        className={`otp-input ${this.state.isOTPNotValid ? "error" : ""}`}
-        type="text"
+      <TextBox
         minLength="6"
         maxLength="6"
         placeholder="Enter OTP"
         onChange={this.handleOTP}
         value={this.state.otp}
-        onKeyDown={this.isAllowInput}
-      ></input>
+        invalid={this.state.isOTPNotValid}
+        number
+      />
     );
+  };
+  handleOnBlurMobileNumber = () => {
+    if (validator.isMobilePhone(this.state.mobileNumber, "en-IN")) {
+      this.setState({ isMobileNumberNotValid: false });
+    }
   };
   isAllowInput = (event) => {
     const allowedKeyCodes = [8, 37, 39, 46];

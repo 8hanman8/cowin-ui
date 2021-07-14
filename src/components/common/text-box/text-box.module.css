@@ -1,0 +1,12 @@
+.textbox {
+  width: 75%;
+  border-radius: 5px;
+  padding: 10px 10px;
+  border: 1px solid #002060;
+}
+.error {
+  border: 2px solid red;
+}
+.error:focus {
+  outline: none;
+}
