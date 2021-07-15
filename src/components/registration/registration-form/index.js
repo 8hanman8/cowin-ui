@@ -134,6 +134,16 @@ class RegistrationForm extends PureComponent {
       </div>
     );
   }
+  keyDownMobileEventHandler = (event) => {
+    if (event.key === "Enter") {
+      this.submitMobileNumber();
+    }
+  };
+  keyDownOTPEventHandler = (event) => {
+    if (event.key === "Enter") {
+      this.verifyOTP();
+    }
+  };
   componentDidUpdate() {
     const { error } = this.props.otp;
 
@@ -163,6 +173,7 @@ class RegistrationForm extends PureComponent {
         onBlur={this.handleOnBlurMobileNumber}
         value={this.state.mobileNumber}
         invalid={this.state.isMobileNumberNotValid}
+        onKeyDown={this.keyDownMobileEventHandler}
         number
       />
     );
@@ -176,6 +187,7 @@ class RegistrationForm extends PureComponent {
         onChange={this.handleOTP}
         value={this.state.otp}
         invalid={this.state.isOTPNotValid}
+        onKeyDown={this.keyDownOTPEventHandler}
         number
       />
     );
