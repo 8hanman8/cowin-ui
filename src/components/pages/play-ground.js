@@ -1,24 +1,41 @@
 import React, { Component } from "react";
-import TextBox from "../common/text-box/text-box";
+import DropDownMenu from "../common/dropdown-menu/drop-down-menu";
 
 class PlayGround extends Component {
   render() {
     return (
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          background: "linear-gradient(-135deg, #c850c0, #4158d0)",
+          marginTop: "100px",
+          marginLeft: "100px",
         }}
       >
-        <TextBox placeholder="Enter you XXXX" />
+        <DropDownMenu
+          title="Vaccinatin Services"
+          onChange={this.onChangeHandler}
+          data={{
+            title: "Vaccination Services",
+            menuOptions: [
+              {
+                key: "rm",
+                description: "Register Members",
+              },
+              {
+                key: "svc",
+                description: "Search Vacciation Center",
+              },
+              {
+                key: "bvs",
+                description: "Book Vaccination Slots",
+              },
+            ],
+          }}
+        />
       </div>
     );
   }
-  onChangeHandler = (e) => {
-    console.log(e.target.value);
+  onChangeHandler = (key) => {
+    console.log(key, "from parent");
   };
 }
 

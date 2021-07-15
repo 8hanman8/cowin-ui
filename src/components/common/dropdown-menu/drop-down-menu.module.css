@@ -1,0 +1,37 @@
+.dropDownMenu {
+  color: #082664;
+  font-weight: bold;
+}
+.downArrow {
+  font-size: 12px;
+  margin-left: 3px;
+}
+.popup {
+  display: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: fit-content;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
+  border-radius: 4px;
+}
+.ul {
+  list-style: none;
+  padding: 0;
+  margin: 3px 0;
+}
+.ulItem {
+  padding: 0 10px;
+  display: block;
+  line-height: 30px;
+}
+.ulItem:hover {
+  background-color: lightgrey;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  color: #082664;
+  cursor: pointer;
+  font-weight: bold;
+}
