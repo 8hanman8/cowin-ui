@@ -10,27 +10,35 @@ class PlayGround extends Component {
           marginLeft: "100px",
         }}
       >
-        <DropDownMenu
-          title="Vaccinatin Services"
-          onChange={this.onChangeHandler}
-          data={{
-            title: "Vaccination Services",
-            menuOptions: [
-              {
-                key: "rm",
-                description: "Register Members",
-              },
-              {
-                key: "svc",
-                description: "Search Vacciation Center",
-              },
-              {
-                key: "bvs",
-                description: "Book Vaccination Slots",
-              },
-            ],
+        <div
+          style={{
+            border: "1px solid red",
+            height: "75px",
+            display: "flex",
+            alignItems: "center",
           }}
-        />
+        >
+          <DropDownMenu
+            onChange={this.onChangeHandler}
+            data={{
+              title: "Vaccination Services",
+              menuOptions: [
+                {
+                  key: "rm",
+                  description: "Register Members",
+                },
+                {
+                  key: "svc",
+                  description: "Search Vacciation Center",
+                },
+                {
+                  key: "bvs",
+                  description: "Book Vaccination Slots",
+                },
+              ],
+            }}
+          />
+        </div>
       </div>
     );
   }
