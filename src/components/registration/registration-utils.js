@@ -97,3 +97,20 @@ export const SUPPORT_DROPDOWN_DATA = {
     },
   ],
 };
+
+export const maskMobileNumber = (mobileNumber, isHiphenSeparated = false) => {
+  if (!mobileNumber) {
+    return "";
+  }
+  const masked = mobileNumber
+    .toString()
+    .split("")
+    .map((e, i) => (i <= 5 ? "X" : e));
+  return (
+    masked.slice(0, 3).join("") +
+    `${isHiphenSeparated ? "-" : " "}` +
+    masked.slice(3, 6).join("") +
+    `${isHiphenSeparated ? "-" : " "}` +
+    masked.slice(6).join("")
+  );
+};

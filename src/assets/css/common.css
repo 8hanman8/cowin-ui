@@ -1,0 +1,22 @@
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --cool-blue: #082664;
+  --black: #191c20;
+  --pale-silver: #c9c4c4;
+  --dark-charcoal: #313131;
+  --nickel: #727272;
+  --font-family: Roboto, sans-serif;
+}
+/* Custom styles */
+body {
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+.hidden {
+  display: none !important;
+}
+[hidden] {
+  display: none !important;
+}

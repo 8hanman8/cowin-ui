@@ -1,0 +1,37 @@
+.mainContainer {
+  width: 60%;
+  background-color: var(--white);
+  margin: 15px auto;
+  border-radius: 7px;
+  padding: 20px 12px;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
+}
+.defaultFont {
+  color: var(--cool-blue);
+  font-family: var(--font-family);
+}
+.floatLeft {
+  float: left;
+}
+.floatRight {
+  float: right;
+}
+.mobile {
+  color: var(--cool-blue);
+  font-weight: 550;
+}
+.detailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.beneficiariesContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.beneficiariesContainer .ben:not(:first-child){
+  background-color: red;
+}

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import validator from "validator";
 import Button from "../../common/button/button";
 import TextBox from "../../common/text-box/text-box";
+import { maskMobileNumber } from "./../registration-utils";
 
 class RegistrationForm extends PureComponent {
   constructor() {
@@ -71,7 +72,9 @@ class RegistrationForm extends PureComponent {
         <div className={`${styles.noteContainer}`}>
           <span>
             {this.props.otp.isOTPSent
-              ? `An OTP has been sent to ${this.maskMobileNumber()}`
+              ? `An OTP has been sent to ${maskMobileNumber(
+                  this.state.mobileNumber
+                )}`
               : "An OTP will be sent to your mobile number for verification"}
           </span>
         </div>
@@ -205,22 +208,6 @@ class RegistrationForm extends PureComponent {
     ) {
       event.preventDefault();
     }
-  };
-  maskMobileNumber = () => {
-    if (!this.state.mobileNumber) {
-      return "";
-    }
-    const masked = this.state.mobileNumber
-      .toString()
-      .split("")
-      .map((e, i) => (i <= 5 ? "X" : e));
-    return (
-      masked.slice(0, 3).join("") +
-      " " +
-      masked.slice(3, 6).join("") +
-      " " +
-      masked.slice(6).join("")
-    );
   };
 }
 

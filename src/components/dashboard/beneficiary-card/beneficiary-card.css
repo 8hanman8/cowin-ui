@@ -1,0 +1,39 @@
+@import url(./../../../assets/css/common.css);
+
+* {
+  box-sizing: border-box;
+}
+.main-container {
+  border: 1px solid var(--pale-silver);
+  border-radius: 10px;
+  width: 100%;
+  padding: 30px 15px;
+}
+.main-container div[class*="row"]:not(:first-child) {
+  margin-top: 10px;
+}
+.row-1 {
+  color: var(--dark-charcoal);
+}
+.row-1 .name {
+  color: var(--cool-blue);
+  font-size: large;
+  font-weight: 600;
+}
+.row-2{
+    color: var(--nickel);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--pale-silver);
+    padding-bottom: 15px;
+}
+.row-3{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--pale-silver);
+    padding-bottom: 15px;
+}
+.row-4{
+    display: flex;
+    justify-content: space-between;
+}

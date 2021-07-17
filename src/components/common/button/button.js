@@ -59,6 +59,12 @@ class Button extends Component {
       background: "none",
       color: btnColor,
     };
+    const roundedOutline = {
+      border: `1px solid ${btnColor}`,
+      color: btnColor,
+      backgroundColor: "white",
+      borderRadius: "25px",
+    };
     let btnStyle;
     switch (type) {
       case "rounded":
@@ -76,6 +82,9 @@ class Button extends Component {
         break;
       case "text":
         btnStyle = textStyles;
+        break;
+      case "roundedOutline":
+        btnStyle = roundedOutline;
         break;
       default:
         btnStyle = {
