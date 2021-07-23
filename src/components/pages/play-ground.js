@@ -1,44 +1,15 @@
 import React, { Component } from "react";
-import DropDownMenu from "../common/dropdown-menu/drop-down-menu";
-
+import Help from "../common/help/help";
 class PlayGround extends Component {
   render() {
     return (
       <div
         style={{
-          marginTop: "100px",
-          marginLeft: "100px",
+          marginTop: "200px",
+          marginLeft: "900px",
         }}
       >
-        <div
-          style={{
-            border: "1px solid red",
-            height: "75px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <DropDownMenu
-            onChange={this.onChangeHandler}
-            data={{
-              title: "Vaccination Services",
-              menuOptions: [
-                {
-                  key: "rm",
-                  description: "Register Members",
-                },
-                {
-                  key: "svc",
-                  description: "Search Vacciation Center",
-                },
-                {
-                  key: "bvs",
-                  description: "Book Vaccination Slots",
-                },
-              ],
-            }}
-          />
-        </div>
+        <Help tooltip="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></Help>
       </div>
     );
   }

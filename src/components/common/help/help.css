@@ -1,0 +1,42 @@
+@import url(../../../assets/css/common.css);
+.help-container {
+  cursor: help;
+  position: relative;
+}
+.q-icon {
+  height: 1.5em;
+  width: 1.5em;
+  color: var(--dark-charcoal);
+}
+.help-container::before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--dark-charcoal) transparent transparent transparent;
+  top: -8px;
+  left: 2px;
+  opacity: 0;
+  z-index: 1;
+}
+.help-container::after {
+  content: attr(tooltip);
+  position: absolute;
+  background-color: var(--dark-charcoal);
+  color: var(--white);
+  padding: 0.6em;
+  border-radius: 0.5em;
+  bottom: 36px;
+  left: -3em;
+  width: 60%;
+  opacity: 0;
+  z-index: 1;
+}
+.help-container:hover::after {
+  opacity: 1;
+  transition: all ease 1s;
+}
+.help-container:hover::before {
+  opacity: 1;
+  transition: all ease 1s;
+}
