@@ -8,9 +8,26 @@
   border-radius: 10px;
   width: 100%;
   padding: 30px 15px;
+  padding-top: 0px;
 }
-.main-container div[class*="row"]:not(:first-child) {
+.main-container div[class*="row"]:not(:nth-child(2)) {
   margin-top: 10px;
+}
+.row-0 {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  position: relative;
+  padding: 0.5rem 2rem;
+  top: -1.65rem;
+}
+.vaccinated {
+  background-color: var(--green);
+  color: var(--white);
+}
+.not-vaccinated {
+  color: var(--black);
+  background-color: var(--orange);
 }
 .row-1 {
   color: var(--dark-charcoal);
@@ -20,20 +37,23 @@
   font-size: large;
   font-weight: 600;
 }
-.row-2{
-    color: var(--nickel);
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px dashed var(--pale-silver);
-    padding-bottom: 15px;
+.row-2 {
+  color: var(--nickel);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--pale-silver);
+  padding-bottom: 15px;
 }
-.row-3{
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px dashed var(--pale-silver);
-    padding-bottom: 15px;
+.row-3 {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--pale-silver);
+  padding-bottom: 15px;
 }
-.row-4{
-    display: flex;
-    justify-content: space-between;
+.row-4 {
+  display: flex;
+  justify-content: space-between;
+}
+.hidden{
+  display: none;
 }

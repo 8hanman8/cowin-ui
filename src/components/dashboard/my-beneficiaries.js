@@ -28,7 +28,7 @@ class MyBeneficiaries extends PureComponent {
         </div>
         <div className={styles.beneficiariesContainer}>
           {beneficiaries.map((beneficiary, index) => (
-            <BeneficiaryCard key={index} style={{ marginTop: "1rem" }} />
+            <BeneficiaryCard key={index} style={{ marginTop: "2rem" }} {...beneficiary}/>
           ))}
         </div>
       </div>

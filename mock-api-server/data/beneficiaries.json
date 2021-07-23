@@ -2,17 +2,17 @@
   "beneficiaries": [
     {
       "beneficiary_reference_id": "32599329458700",
-      "name": "Junjuru Hanmandllu",
+      "name": "Junjuru Hanmandlu",
       "birth_year": "1975",
       "gender": "Male",
       "mobile_number": "9048",
       "photo_id_type": "Aadhaar Card",
       "photo_id_number": "XXXXXXXX6189",
       "comorbidity_ind": "",
-      "vaccination_status": "Partially Vaccinated",
+      "vaccination_status": "Vaccinated",
       "vaccine": "COVISHIELD",
       "dose1_date": "10-04-2021",
-      "dose2_date": "",
+      "dose2_date": "08-05-2021",
       "appointments": []
     },
     {
