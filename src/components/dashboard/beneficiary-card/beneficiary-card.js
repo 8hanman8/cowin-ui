@@ -26,7 +26,7 @@ class BeneficiaryCard extends React.PureComponent {
     return (
       <div className="main-container" {...props}>
         <div
-          className={`row-0 ${!!dose1_date ? "vaccinated" : "not-vaccinated"}`}
+          className={`row-0 ${!!dose1_date || !!dose2_date ? "vaccinated" : "not-vaccinated"}`}
         >
           <span>{vaccination_status}</span>
         </div>
@@ -91,7 +91,7 @@ class BeneficiaryCard extends React.PureComponent {
           </div>
           <div>
             {!!dose1_date && !dose2_date ? (
-              <Button type="roundedOutline" onClick={this.downloadCertificate}>
+              <Button type="roundedOutline" onClick={this.downloadCertificate} style={{width:"10rem"}}>
                 <AiOutlineSafetyCertificate style={{ marginRight: "5px" }} />
                 {"  "}
                 <span>Certificate</span>
@@ -100,7 +100,7 @@ class BeneficiaryCard extends React.PureComponent {
               ""
             )}
             {!dose1_date ? (
-              <Button type="roundedOutline">
+              <Button type="roundedOutline" style={{width:"10rem"}}>
                 <BsCalendar style={{ marginRight: "5px" }} />
                 {"  "}
                 <span>Schedule</span>
@@ -137,7 +137,7 @@ class BeneficiaryCard extends React.PureComponent {
           </div>
           <div>
             {!!dose1_date && !dose2_date ? (
-              <Button type="roundedOutline">
+              <Button type="roundedOutline" style={{width:"10rem"}}>
                 <BsCalendar style={{ marginRight: "5px" }} />
                 {"  "}
                 <span>Schedule</span>
@@ -146,7 +146,7 @@ class BeneficiaryCard extends React.PureComponent {
               ""
             )}
             {!!dose1_date && !!dose2_date ? (
-              <Button type="roundedOutline" onClick={this.downloadCertificate}>
+              <Button type="roundedOutline" onClick={this.downloadCertificate} style={{width:"10rem"}}>
                 <AiOutlineSafetyCertificate style={{ marginRight: "5px" }} />
                 {"  "}
                 <span>Certificate</span>
