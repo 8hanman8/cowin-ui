@@ -2,6 +2,7 @@ import {
   GET_BENEFICIARIES,
   GET_BENEFICIARIES_SUCCESS,
   GET_BENEFICIARIES_FAILURE,
+  DOWNLOAD_CERTIFICATE,
 } from "./beneficiaries-types";
 
 function getBeneficiaries() {
@@ -22,4 +23,16 @@ function getBeneficiariesFailure(error) {
     error: error,
   };
 }
-export { getBeneficiaries, getBeneficiariesSuccess, getBeneficiariesFailure };
+function downloadCertificate(beneficiaryReferenceId, fileName) {
+  return {
+    type: DOWNLOAD_CERTIFICATE,
+    beneficiaryReferenceId: beneficiaryReferenceId,
+    fileName: fileName,
+  };
+}
+export {
+  getBeneficiaries,
+  getBeneficiariesSuccess,
+  getBeneficiariesFailure,
+  downloadCertificate,
+};

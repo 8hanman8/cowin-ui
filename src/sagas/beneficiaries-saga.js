@@ -1,6 +1,12 @@
 import { put, takeLatest, call } from "@redux-saga/core/effects";
-import { GET_BENEFICIARIES } from "../redux/beneficiaries/beneficiaries-types";
-import { getBeneficiariesAPI } from "../apis/beneficiaries-api";
+import {
+  GET_BENEFICIARIES,
+  DOWNLOAD_CERTIFICATE,
+} from "../redux/beneficiaries/beneficiaries-types";
+import {
+  getBeneficiariesAPI,
+  downloadCertificateAPI,
+} from "../apis/beneficiaries-api";
 import {
   getBeneficiariesSuccess,
   getBeneficiariesFailure,
@@ -19,5 +25,14 @@ export function* getBeneficiariesSaga() {
   }
 }
 
-const beneficiariesSagas = [getBeneficiaries];
+export function* downloadCertificate() {
+  yield takeLatest(DOWNLOAD_CERTIFICATE, downloadCertificateSaga);
+}
+
+export function* downloadCertificateSaga(action) {
+  try {
+    yield call(downloadCertificateAPI(action.beneficiaryReferenceId,action.fileName));
+  } catch (error) {}
+}
+const beneficiariesSagas = [getBeneficiaries, downloadCertificate];
 export default beneficiariesSagas;

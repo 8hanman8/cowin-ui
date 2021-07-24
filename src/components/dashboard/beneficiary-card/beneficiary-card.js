@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import Button from "../../common/button/button";
 import "./beneficiary-card.css";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import { GoVerified } from "react-icons/go";
 import { RiTimer2Fill } from "react-icons/ri";
 import { BsCalendar } from "react-icons/bs";
+import { downloadCertificate } from "../../../redux/beneficiaries/beneficiaries-actions";
 class BeneficiaryCard extends React.PureComponent {
   render() {
     const {
@@ -18,6 +20,7 @@ class BeneficiaryCard extends React.PureComponent {
       dose2_date,
       vaccine,
       appointments,
+      downloadMyCertificate,
       ...props
     } = this.props;
     return (
@@ -60,7 +63,10 @@ class BeneficiaryCard extends React.PureComponent {
             </span>
           </span>
         </div>
-        <div className="row-3"  style={{ border: `${!dose1_date?'none':''}` }}>
+        <div
+          className="row-3"
+          style={{ border: `${!dose1_date ? "none" : ""}` }}
+        >
           <div style={{ width: "45%" }}>
             <div>
               <span style={{ color: "green", fontWeight: "bold" }}>
@@ -85,7 +91,7 @@ class BeneficiaryCard extends React.PureComponent {
           </div>
           <div>
             {!!dose1_date && !dose2_date ? (
-              <Button type="roundedOutline">
+              <Button type="roundedOutline" onClick={this.downloadCertificate}>
                 <AiOutlineSafetyCertificate style={{ marginRight: "5px" }} />
                 {"  "}
                 <span>Certificate</span>
@@ -104,9 +110,7 @@ class BeneficiaryCard extends React.PureComponent {
             )}
           </div>
         </div>
-        <div
-          className={`row-4 ${!dose1_date ? "hidden" : ""}`}
-        >
+        <div className={`row-4 ${!dose1_date ? "hidden" : ""}`}>
           <div style={{ width: "45%" }}>
             <div style={{ color: !!dose2_date ? "green" : "red" }}>
               <span
@@ -142,7 +146,7 @@ class BeneficiaryCard extends React.PureComponent {
               ""
             )}
             {!!dose1_date && !!dose2_date ? (
-              <Button type="roundedOutline">
+              <Button type="roundedOutline" onClick={this.downloadCertificate}>
                 <AiOutlineSafetyCertificate style={{ marginRight: "5px" }} />
                 {"  "}
                 <span>Certificate</span>
@@ -155,6 +159,20 @@ class BeneficiaryCard extends React.PureComponent {
       </div>
     );
   }
+  downloadCertificate = () => {
+    const { beneficiary_reference_id, downloadMyCertificate, name } =
+      this.props;
+    const fileName = `${
+      name.replace(/\s+/g, "_").toLowerCase() + "_certificate"
+    }`;
+    downloadMyCertificate(beneficiary_reference_id, fileName);
+  };
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    downloadMyCertificate: (beneficiaryReferenceId, fileName) =>
+      dispatch(downloadCertificate(beneficiaryReferenceId, fileName)),
+  };
+};
 
-export default BeneficiaryCard;
+export default connect(null, mapDispatchToProps)(BeneficiaryCard);
