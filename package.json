@@ -37,7 +37,9 @@
     "lint:fix": "node_modules/.bin/eslint ./src --fix",
     "client": "react-scripts start",
     "start-local": "set \"REACT_APP_API_HOST=http://localhost:3004\" && npm run client",
-    "mock": "node ./mock-api-server/mock-api.js"
+    "mock": "node ./mock-api-server/mock-api.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +58,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  },
+  "homepage": "http://8hanman8.github.io/cowin-ui"
 }
